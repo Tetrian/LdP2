@@ -6,7 +6,7 @@
 
 public class A extends B {
   public A(int x) {
-    super(x−1, x / 2.0);
+    super(x-1, x / 2.0);
   }
   public A(double inutile) { }
   private void stampa(String s) {
