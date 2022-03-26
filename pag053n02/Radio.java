@@ -1,51 +1,87 @@
 
-public class Radio {
-  private Channel[] vec; // in ordine crescente di frequenza
+import java.util.Iterator;
 
-  public class Channel {
+public class Radio implements Iterable<Radio.Channel> {
+
+  public static class Channel {
     private String name;
     private double fm;
+    private Channel next;
 
-    protected Channel(String name, double fm) {
+    private Channel(String name, double fm) {
       this.name = name;
       this.fm = fm;
+      next = null;
+    }
+
+    @Override
+    public String toString() {
+      return name + " (" + fm + ")";
     }
   }
+  private Channel first;
 
   public Radio() {}
 
-  // aggiunge una nuova stazione se la frequenza è disponibile
-  public Channel addChannel(String name, double fm) throws Exception {
-    Channel [] newvec = new Channel [vec.length + 1];
-    int index = 0;
-    for (int idx = 0; idx < vec.length; ++idx) {
-      if (vec[idx].fm == fm) throw new Exception("Frequenza già in uso");
-      if (vec[idx].fm < fm) {
-        newvec[idx] = vec[idx];
-      }
-      if (vec[idx].fm > fm) {
-        index = idx;
-        break;
-      }
+  // aggiunge una nuova stazione in ordine se la frequenza è disponibile
+  public Channel addChannel(String name, double fm) {
+    if (first == null) {
+      first = new Channel(name, fm);
+      return first;
     }
-    newvec[index] = new Channel(name, fm);
-    for (int idx = index++; idx < newvec.length; ++idx) {
-      newvec[idx] = vec[idx - 1];
+    Channel newChannel = new Channel(name, fm);
+    if (first.fm > fm) {
+      newChannel.next = first;
+      first = newChannel;
     }
-    vec = newvec;
-    return vec[index];
+    Channel slide = first;
+    while (slide.next != null) {
+      if (slide.fm == fm || slide.next.fm == fm)
+        throw new Error("Frequenza non disponibile");
+
+      if (slide.next.fm > fm) {
+        newChannel.next = slide.next;
+        slide.next = newChannel;
+        return newChannel;
+      }
+      slide = slide.next;
+    }
+    slide.next = newChannel;
+    return newChannel;
   }
 
   // restituisce la stazione più vicina a quella data
   public Channel nearest(double fm) {
-    for (int idx = 0; idx < vec.length; ++idx) {
-      if (vec[idx].fm > fm) {
-        if (fm - vec[idx - 1].fm < vec[idx].fm - fm)
-          return vec[idx - 1];
+    Channel result = first;
+    for (Channel slide = first; slide != null; slide = slide.next) {
+      if (slide.next != null && slide.next.fm > fm) {
+        if ((fm - slide.fm) < (slide.next.fm - fm))
+          return slide;
         else
-          return vec[idx];
+          return slide.next;
       }
+      result = slide;
     }
-    return vec[0];
+    return result;
   }
+
+  // iteratore per il forEach
+  public Iterator<Channel> iterator() {
+    return new Iterator<Channel>() {
+      Channel curr = first;
+
+      @Override
+      public boolean hasNext() {
+        return curr != null;
+      }
+
+      @Override
+      public Channel next() {
+        Channel result = curr;
+        curr = curr.next;
+        return result;
+      }
+    };
+  }
+
 }
