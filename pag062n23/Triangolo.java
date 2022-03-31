@@ -3,18 +3,13 @@ public class Triangolo {
   private double a, b, c;
 
   public Triangolo(double x, double y, double z) {
-    try{
       if (x < y + z && y < x + z && z < x + y) {
-        a = x; b = y; c = z;
+          a = x; b = y; c = z;
       }
-      else throw new IllegalArgumentException("incorrect measurements");
-    }
-    catch (IllegalArgumentException iae){
-      iae.printStackTrace();
-    }
+      else throw new IllegalArgumentException("Incorrect measurements");
   }
 
-  public double getArea() {
+  public final double getArea() {
     double halfp = (a + b + c) / 2;
     return Math.sqrt(halfp * (halfp - a) * (halfp - b) * (halfp - c));
   }
