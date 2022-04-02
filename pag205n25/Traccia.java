@@ -1,3 +1,6 @@
+
+import java.util.Comparator;
+
 class Traccia {
   /*
   La classe Triangle rappresenta un triangolo. Il suo costruttore accetta la

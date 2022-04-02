@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Triangle {
   private double a, b, c;
@@ -35,5 +36,18 @@ public class Triangle {
       return false;
   }
 
-  public Comparator perimeterComparator()
+  public static Comparator<Triangle> perimeterComparator() {
+    return new Comparator<>() {
+      @Override
+      public int compare(Triangle x, Triangle y) {
+        double perim1 = x.a + x.b + x.c;
+        double perim2 = y.a + y.b + y.c;
+        if (perim1 < perim2)
+          return -1;
+        if (perim1 > perim2)
+          return 1;
+        return 0;
+      }
+    };
+  }
 }
