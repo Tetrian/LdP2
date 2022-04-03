@@ -26,7 +26,7 @@ c) return ((a.x*a.x)+(a.y*a.y)) - ((b.x*b.x)+(b.y*b.y));
      quadrata (a.x*a.x)+(a.y*a.y) è praticamente il modulo del vettore a che
      va dall'origine (0,0) al punto (x,y) */
 d) return (a.x-b.x)+(a.y-b.y);
-  /* Mi sembri rispetti le 3 proprietà, anche se mi puzza */
+  /* rispetta le 3 proprietà (anche se c'è qualcosa che mi puzza) */
 e) return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
   /* Questa espressione è del tipo val1^2 + val2^2 ed è evidente quindi che non
      è valida come implementazione di compere poiché ritorna sempre un valore >0 */
