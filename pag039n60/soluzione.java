@@ -76,3 +76,7 @@ System.out.println(gamma.f(3, gamma));
  * Le due firme candidate non sono confrontabili
 Quindi, l'early binding si conclude con un errore di compilazione
 */
+
+// quinta chiamata
+System.out.println(false || alfa.equals(beta));
+// alfa.equals è true, quindi la condizione è true e stampa dunque true

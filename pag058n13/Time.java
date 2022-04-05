@@ -1,8 +1,8 @@
 
 public class Time implements Comparable<Time> {
-  private int h;
-  private int m;
-  private int s;
+  private final int h;
+  private final int m;
+  private final int s;
 
   public static final Time MIDDAY = new Time(12, 00, 00);
   public static final Time MIDNIGHT = new Time(00, 00, 00);
@@ -16,6 +16,9 @@ public class Time implements Comparable<Time> {
   }
 
   public Time minus(Time t) {
+    // if (t == null) return this; // non necessario, non ho un costruttore
+                                   // vuoto, quindi non posso avere oggetto
+                                   // time nullo.
     int new_h = this.h - t.h;
     int new_m = this.m - t.m;
     int new_s = this.s - t.s;

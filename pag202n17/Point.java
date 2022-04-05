@@ -24,9 +24,13 @@ c) return ((a.x*a.x)+(a.y*a.y)) - ((b.x*b.x)+(b.y*b.y));
       3) se x.compareTo(y)==0 allora sgn(x.compareTo(z))==sgn(y.compareTo(z))
      dove x, y e z sono Point. Nota che eccetto per la mancanza della radice
      quadrata (a.x*a.x)+(a.y*a.y) è praticamente il modulo del vettore a che
-     va dall'origine (0,0) al punto (x,y) */
+     va dall'origine (0,0) al punto (x,y)
+     Si noti che questo comparatore non è coerente con equals poiché punti
+     diversi risulteranno uguali se hanno la stessa distanza dall'origine */
 d) return (a.x-b.x)+(a.y-b.y);
-  /* rispetta le 3 proprietà (anche se c'è qualcosa che mi puzza) */
+  /* rispetta le 3 proprietà, ed è evidente se riscriviamo la somma nel
+     seguente modo: (a.x+a.y)-(b.x+b.y) */
 e) return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
   /* Questa espressione è del tipo val1^2 + val2^2 ed è evidente quindi che non
-     è valida come implementazione di compere poiché ritorna sempre un valore >0 */
+     è valida come implementazione di compere poiché ritorna sempre un valore >0
+     e quindi sicuramente viola la prima regola */
