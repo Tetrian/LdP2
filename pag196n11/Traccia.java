@@ -17,6 +17,13 @@ class Traccia {
     while (i.hasNext()) {
       BinaryTreeNode node = (BinaryTreeNode) i.next();
       // ...
+      // aggiunta da me:
+      System.out.println(node);
     }
   }
-}
+/* Output atteso:
+    Sinistro
+    Destro
+    Ultimo
+Nota: non mi aspetto "Radice" poiché chiamo le stampe dopo il primo next.
+*/}

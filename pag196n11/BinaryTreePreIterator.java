@@ -11,14 +11,15 @@ public class BinaryTreePreIterator implements Iterator<BinaryTreeNode> {
       curr = node;
       stk = new Stack<BinaryTreeNode>();
     }
-    else {
-      curr = null;
-    }
+    else throw new IllegalArgumentException("The node must not be null");
   }
 
   @Override
   public boolean hasNext() {
-    return curr != null;
+    if (!stk.empty()) return true;
+    if (curr.getLeft() != null) return true;
+    if (curr.getRight() != null) return true;
+    return false;
   }
 
   @Override
