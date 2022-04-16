@@ -6,17 +6,18 @@ import java.util.Comparator;
 
 public class B {
 
-  // affinchè la linea 7 compili il metodo getlist() deve ritornare una lista di
-  // stringhe o suo sottotipo in modo che sia compatibile con <? extends String>
+  // getList è un metodo statico senza argomenti che restituisce
+  // List<? extends String> e qualiasi tipo ad esso assegnabile
   public static LinkedList<String> getList() {
     return new LinkedList<String>(); // oppure return null;
   }
 
-  // get it deve accettare qualsiasi parametro e restituirne uno dello stesso tipo
+  // getIt è un metodo statico con un argomento qualsiasi (quindi si potrebbe
+  // anche metter Object) e come parametro di ritorno ha T o un suo sottotipo
   public static <T> T getIt(T x)  { return x; }
 
-  // Il metodo convert deve accettare un tipo Set<Integer o suo supertipo> e
-  // ritornare una classe che implementa Set<String> (usiamo HashSet)
+  // Il metodo convert prende un Set<? super Integer> e restituisce un
+  // Set<String> o qualsiasi tpo ad esso assegnabile
   public static HashSet<String> convert(Set<? super Integer> s) {
     return new HashSet<String>(); // oppure return null;
   }
