@@ -38,7 +38,7 @@ public class Apparecchio {
     * @see Impianto
     */
    public void off() {
-       if (acceso) acceso = false;
+       acceso = false;
    }
 
    /**
