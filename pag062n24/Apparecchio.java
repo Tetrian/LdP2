@@ -45,12 +45,4 @@ public class Apparecchio {
          i_rif.aggiornaPotenza(-watt);
        }
    }
-
-   /**
-    * Ritorna un intero positivo che rappresenta la potenza di questo Apparecchio
-    * @return this.watt
-    */
-   protected int getWatt() {
-     return watt;
-   }
 }
