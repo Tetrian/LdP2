@@ -21,24 +21,29 @@ public class Apparecchio {
    /**
     * Se l'apparecchio è attualmente spento e l'Impianto ha ancora potenza
     * sufficiente ad alimentare questo apparecchio lo accende settanto la
-    * variabile acceso a true.
+    * variabile acceso a true e aggiorna la potenza assorbita dall'impianto.
     * @see Impianto
     */
    public void on() {
-     if (!acceso) {
+     if (!acceso && i_rif != null) {
       if (i_rif.potenza() + watt > i_rif.getMaxWatt())
         throw new BufferOverflowException();
       acceso = true;
+      i_rif.aggiornaPotenza(watt);
      }
    }
 
    /**
-    * Se l'apparecchio è attualmente acceso lo spegne impostando l'attributo
-    * acceso a false-
+    * Se l'apparecchio è attualmente acceso e collegato ad un impianto lo
+    * spegne impostando l'attributo acceso a false e aggiorna la potenza
+    * assorbita dall'impianto
     * @see Impianto
     */
    public void off() {
-       acceso = false;
+       if (acceso && i_rif != null) {
+         acceso = false;
+         i_rif.aggiornaPotenza(-watt);
+       }
    }
 
    /**

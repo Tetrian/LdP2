@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 public class Impianto extends HashSet<Apparecchio> {
   private final int max_watt;
+  private int potenza;
 
   /**
    * Crea un ogetto di tipo impianto con potenza massima (max_watt) pari a
@@ -15,6 +16,7 @@ public class Impianto extends HashSet<Apparecchio> {
     if (max_watt < 0)
       throw new IllegalArgumentException("Valore potenza non valido");
     this.max_watt = max_watt;
+    potenza = 0;
   }
 
   /**
@@ -32,19 +34,13 @@ public class Impianto extends HashSet<Apparecchio> {
   }
 
   /**
-   * Calcola il valore della potenza totale assorbita dagli oggetti di tipo
+   * Ritorna il valore della potenza totale assorbita dagli oggetti di tipo
    * Apparecchio collegati all'attuale Impianto.
-   * @return intero positivo che rappresenta l'attuale potenza assorbita
+   * @return this.potenza
    * @see Apparecchio
    */
   public int potenza() {
-    if (super.isEmpty()) return 0;
-    int watt = 0;
-    for (Apparecchio a : this) {
-      if (a.acceso == true)
-        watt += a.getWatt();
-    }
-    return watt;
+    return potenza;
   }
 
   /**
@@ -53,5 +49,14 @@ public class Impianto extends HashSet<Apparecchio> {
    */
   int getMaxWatt() {
     return max_watt;
+  }
+
+  /**
+   * Somma l'intero in ingresso alla variabile potenza che rappresenta
+   * la potenza assorbita dall'impianto
+   * @param watt intero
+   */
+  void aggiornaPotenza(int watt) {
+    potenza += watt;
   }
 }
