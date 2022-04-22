@@ -11,7 +11,7 @@ class TwoSteps {/*
 
   //SOLUZIONE:
   public static <T> Iterator<T> twoSteps(Iterator<T> iter) {
-    LinkedList<T> l = new LinkedList<>();
+    List<T> l = new LinkedList<>();
     for (Iterator<T> i = iter; iter.hasNext() == true; iter.next())
       l.add(iter.next());
     return l.iterator();

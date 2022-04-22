@@ -1,10 +1,11 @@
 
+import java.util.Set;
 import java.util.HashSet;
 
 public class Product {
   private String description;
   private double price;
-  private static HashSet<String> stringSet = new HashSet<>();
+  private static Set<String> stringSet = new HashSet<>();
 
   public Product(String description, double price) {
     if(stringSet.add(description)) {
