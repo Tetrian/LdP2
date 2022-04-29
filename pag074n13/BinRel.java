@@ -11,9 +11,6 @@ public class BinRel<T> {
       left = x;
       right = y;
     }
-    private Pair<T> symmetric() {
-      return new Pair<T>(right, left);
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -39,9 +36,8 @@ public class BinRel<T> {
   }
 
   public boolean isSymmetric() {
-    Set<Pair<T>> temp = new HashSet<>(rel);
     for (Pair<T> pair: rel) {
-      if (temp.add(pair.symmetric()))
+      if (!areRelated(pair.right, pair.left))
         return false;
     }
     return true;
