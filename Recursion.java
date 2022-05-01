@@ -3,7 +3,7 @@ public class Recursion {
   public void test() {
     test();
     System.out.println("Recursion!!!");
-  }
+}
   // Stampare solo una volta la stringa senza modificare la classe Recursion
 
   public static void main(String[] argv) {
