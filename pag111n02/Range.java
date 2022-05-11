@@ -16,19 +16,18 @@ public class Range<T extends Comparable<T>> {
     }
   }
 
-  public boolean isInside(Object obj) {
-    if (obj == null) return false;
+  public boolean isInside(T obj) {
     if (min.getClass() != obj.getClass()) return false;
-    T t = (T) obj;
-    if (t.compareTo(min) < 0) return false;
-    if (t.compareTo(max) > 0) return false;
+    if (obj.compareTo(min) < 0) return false;
+    if (obj.compareTo(max) > 0) return false;
     return true;
   }
 
-  public boolean isOverlapping(Range<?> ran) {
-    if (min.getClass() != ran.min.getClass()) return false;
-    if (min.compareTo((T) ran.min) > 0) return false;
-    if (max.compareTo((T) ran.max) < 0) return false;
+  // questa firma non è completa poiché non accetta come parametri gli
+  // intervalli di tipo diverso da quello di questa classe.
+  public boolean isOverlapping(Range<T> ran) {
+    if (min.compareTo(ran.min) > 0) return false;
+    if (max.compareTo(ran.max) < 0) return false;
     return true;
   }
 
