@@ -21,6 +21,8 @@
 	arrivare a Object)
   */
 	public static Class<?> getAncestorClass(Object obj) {
+    if (obj.getClass().getSuperclass() == null)
+      throw new IllegarlArgumentException("The object cannot be a Object type");
 		Class<?> current = obj.getClass();
 		while (current.getSuperclass() != Object.class) {
 			current = current.getSuperclass();

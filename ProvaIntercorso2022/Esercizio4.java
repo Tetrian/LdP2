@@ -10,7 +10,7 @@
 /* SOLUZIONI:
     1: Vero
     2: Falso
-    3: Falso ?
+    3: Falso
     4: Vero
     5: Vero
 */

@@ -21,7 +21,7 @@ casi non elenecati, restituisce zero):
      cui x.test(t) restituisce falso e y.test(t) restituisce vero.
 */
 
-/* SOLUZIONI:
+/* SOLUZIONI: nessuna è una specifica valida
 (a)
 (b)
 (c)

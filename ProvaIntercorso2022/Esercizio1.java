@@ -1,10 +1,10 @@
 class Esercizio1 {/*
   La seguente interfaccia rappresenta un insieme in cui ad ogni oggetto è
-  associato un peso intero:
+  associato un peso intero:                                                   */
   public interface WeightedSet<T> {
     void add(T obj, int weight);
     WeightedSet<T> atLeast(int threshold);
-  }
+  }/*
   Il metodo add aggiunge un oggetto con un dato peso. Ad ogni oggetto può essere
   associato un unico peso, mentre oggetti diversi possono avere lo stesso peso.
   Il metodo atLeast accetta un peso threshold e restituisce una vista sull'

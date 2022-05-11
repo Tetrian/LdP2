@@ -1,47 +1,37 @@
 
 import java.util.Map;
-import java.util.Set;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class BasicWeightedSet<T> implements WeightedSet<T> {
-  private Map<T, Integer> map;
+    private Map<T,Integer> map;
+    private int threshold;
 
-  public BasicWeightedSet() {
-    map = new HashMap<T, Integer>();
-  }
+    public BasicWeightedSet() {
+        map = new HashMap<>();
+        threshold = Integer.MIN_VALUE;
+    }
 
-  public void add(T obj, int weight) {
-    map.put(obj, weight);
-  }
+    private BasicWeightedSet(BasicWeightedSet<T> other, int threshold) {
+        this.map = other.map;
+        this.threshold = threshold;
+    }
 
-  public WeightedSet<T> atLeast(int threshold) {
-    BasicWeightedSet<T> bws = new BasicWeightedSet<>() {
-
-      @Override
-      public void add(T obj, int weight) {
+    public void add(T obj, int weight) {
         if (weight < threshold)
-          throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Weight is too small.");
         map.put(obj, weight);
-      }
+    }
 
-      @Override
-      public String toString() {
-        Set<T> tmp = new HashSet<>();
-        for (T obj: map.keySet()) {
-          int weight = map.get(obj);
-          if (weight >= threshold)
-            tmp.add(obj);
+    public String toString() {
+        List<T> list = new ArrayList<>();
+        for (T key: map.keySet()) {
+            if (map.get(key) >= threshold)
+                list.add(key);
         }
-        return tmp.toString();
-      }
-    };
-    bws.map = map;
-    return bws;
-  }
+        return list.toString();
+    }
 
-  @Override
-  public String toString() {
-    return map.keySet().toString();
-  }
+    public WeightedSet<T> atLeast(int newThreshold) {
+        return new BasicWeightedSet<T>(this, Integer.max(threshold, newThreshold));
+    }
 }
