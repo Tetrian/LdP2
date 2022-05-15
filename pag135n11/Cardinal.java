@@ -15,10 +15,10 @@ public enum Cardinal {
     if (x.isOpposite(y))
       throw new IllegalArgumentException("The points must not be opposite");
     int mid;
-    if (x.ordinal() + y.ordinal() <= 8)
+    if (Math.abs(x.ordinal() - y.ordinal()) <= 8)
       mid = (x.ordinal() + y.ordinal()) / 2;
     else
-      mid = (x.ordinal() + y.ordinal() + 16) / 2;
+      mid = ((x.ordinal() + y.ordinal()) / 2 + 8) % 16;
     return values()[mid];
   }
 }
