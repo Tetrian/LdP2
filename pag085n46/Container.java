@@ -1,47 +1,39 @@
 
-import java.nio.BufferOverflowException;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Container {
-  private static final double CAPACITY = 50;
-  private double liters;
-  private Container connected;
+	private double amount;
+	private Set<Container> group;
 
   public Container() {
-    liters = 0;
-    connected = null;
+		group = new HashSet<Container>();
+		group.add(this);
   }
 
-  public void addWater(double lit) {
-    if (liters + lit > CAPACITY)
-      throw new BufferOverflowException();
-    liters += lit;
+  public void addWater(double amount) {
+		double distributed = amount / group.size();
+		for (Container c: group)
+			c.amount = distributed;
   }
 
   public double getAmount() {
-    balanceWater();
-    return liters;
+    return amount;
   }
 
-  public void connect(Container con) {
-    if (connected != null)
-      throw new RuntimeException("This container is already connedted");
-    connected = con;
-  }
+  public void connect(Container other) {
+		if (group == other.group) return;
 
-  private void balanceWater() {
-    int n_con = 0;
-    double tot_liters = 0;
-    Container tmp = this;
-    while (tmp != null) {
-      n_con++;
-      tot_liters += tmp.liters;
-      tmp = tmp.connected;
-    }
-    double new_liters = tot_liters / n_con;
-    tmp = this;
-    for (int i = 0; i < n_con; ++i) {
-      tmp.liters = new_liters;
-      tmp = tmp.connected;
-    }
+		int size1 = group.size(),
+			size2 = other.group.size();
+		double tot1 = amount * size1,
+			   tot2 = other.amount * size2,
+			   newAmount = (tot1 + tot2) / (size1 + size2);
+		group.addAll(other.group);
+
+		for (Container c: other.group)
+			c.group = group;
+		for (Container c: group)
+			c.amount = newAmount;
   }
 }
