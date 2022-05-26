@@ -26,7 +26,7 @@ public class Container {
 
         int size1 = group.size(),
             size2 = other.group.size();
-        float. tot1 = amount * size1,
+        float tot1 = amount * size1,
               tot2 = other.amount * size2,
               newAmount = (tot1 + tot2) / (size1 + size2);
 
