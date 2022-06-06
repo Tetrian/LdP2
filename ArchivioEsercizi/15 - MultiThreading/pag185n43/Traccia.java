@@ -23,7 +23,11 @@ class Traccia {/*
   		}).start();
   	}
   	try {
-  		Thread.sleep(set.size());
+  		Thread.sleep(set.size()); /* è una soluzione sbagliata, non è certo che
+                                   così funzioni, bisognerebbe fare una lista
+                                   di thread e poi ciclare su questa per
+                                   controllare che siano terminati
+                                */
   	} catch (InterruptedException e) {}
   	return set;
   }
