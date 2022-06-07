@@ -19,41 +19,43 @@ public class ExecuteInParallel {
 
   // SOLUZIONE DI V. TRAMO
   public static void executeInParallel(Runnable[] runnables, int capacity)
-                                                  throws InterruptedException {
-        if (capacity > runnables.length)
-            capacity = runnables.length;
-        BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(capacity);
+                                                  throws InterruptedException
+  {
+      if (capacity > runnables.length)
+          capacity = runnables.length;
+      BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(capacity);
 
-        // Runnable di un consumatore
-        Runnable consumes = () -> {
-            while (!Thread.currentThread().isInterrupted()) {
-                try {
-                    queue.take().run();
-                } catch (InterruptedException e) {
-                    return;
-                }
-            }
-        };
-        // Creazione, memorizzazione e avvio dei consumatori
-        Set<Thread> consumers = new HashSet<>(capacity);
-        do {
-            Thread consumer = new Thread(consumes);
-            consumers.add(consumer);
-            consumer.start();
-        } while (consumers.size() < capacity);
+      // Runnable di un consumatore
+      Runnable consumes = () -> {
+          while (!Thread.currentThread().isInterrupted()) {
+              try {
+                  queue.take().run();
+              } catch (InterruptedException e) {
+                  return;
+              }
+          }
+      };
+      // Creazione, memorizzazione e avvio dei consumatori
+      Set<Thread> consumers = new HashSet<>(capacity);
+      do {
+          Thread consumer = new Thread(consumes);
+          consumers.add(consumer);
+          consumer.start();
+      } while (consumers.size() < capacity);
 
-        // Inizio produzione runnables
-        for (Runnable runnable: runnables)
-            queue.put(runnable);
+      // Inizio produzione runnables
+      for (Runnable runnable: runnables)
+          queue.put(runnable);
 
-        // Interrompi tutti i consumatori
-        for (Thread consumer: consumers)
-            consumer.interrupt();
-    }
+      // Interrompi tutti i consumatori
+      for (Thread consumer: consumers)
+          consumer.interrupt();
+  }
 
   // SOLUZIONE DEL PROF
   public static void executeInParallel(Runnable[] ra, int k)
-                                                  throws InterruptedException {
+                                                  throws InterruptedException
+  {
     final BlockingQueue<Thread> q = new ArrayBlockingQueue<Thread>(k);
 
     for (final Runnable r: ra) {
