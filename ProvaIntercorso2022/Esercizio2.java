@@ -22,8 +22,10 @@ casi non elenecati, restituisce zero):
 */
 
 /* SOLUZIONI: nessuna è una specifica valida
-(a)
-(b)
+(a) non rispetta la proprietà 3 dell'ordinamento (coerenza rispetto l'
+    uguaglianza); infatti, PENSACI TU
+(b) non rispetta la proprietà 1; infatti se mi da -1 per una coppia allora mi
+    darà -1 anche scambiandoli di posto e quindi non è antisimmetrica.
 (c)
 (d)
 */
