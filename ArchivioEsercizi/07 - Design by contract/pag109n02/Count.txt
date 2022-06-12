@@ -1,0 +1,27 @@
+Il metodo count accetta una LinkedList e restituisce un intero.
+Il suo contratto è il seguente:
+  pre-condizione: La lista contiene stringhe.
+  post-condizione: Restituisce la somma delle lunghezze delle stringhe presenti
+                   nella lista.
+
+Dire quali dei seguenti sono contratti validi per un overriding di f, motivando
+la risposta.
+
+a) pre-condizione: Nessuna.
+   post-condizione: Restituisce la somma delle lunghezze delle stringhe presenti
+                    nella lista (oggetti diversi da stringhe vengono ignorati).
+
+b) pre-condizione: La lista contiene stringhe non vuote.
+   post-condizione: Restituisce la lunghezza della lista.
+
+
+SOLUZIONE:
+
+a) la precondizione è valida (richiede meno) ma la post condizione non offre
+   nessuna garanzia quando si passa un oggetto che non sia una lista di stringhe,
+   Una post condizione corretta potrebbe essere la seguente:
+   Restituisce la somma delle lunghezze delle stringhe presenti nella lista,
+   con oggetti diversi da stringhe restituisce 0;
+
+b) questo contratto non è valido poichè oltre ad avere una precondizione più
+   restrittiva offre garanzie completamente diverse dal metodo overridato.
