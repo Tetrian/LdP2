@@ -1,0 +1,27 @@
+La classe Date rappresenta una data tramite tre numeri interi (giorno, mese e
+anno) e ridefinisce equals nel modo naturale.
+Dire quali delle seguenti sono specifiche valide per un comparatore tra due
+oggetti Date a e b.
+Dire anche quali specifiche sono coerenti con equals.
+compare(a,b) restituisce (nei casi non contemplati, restituisce 0):
+a) -1 se l’anno di a è minore di quello di b; 1 se l’anno di a è maggiore di
+   quello di b.
+b) -1 se a e b hanno lo stesso mese; 1 se a e b hanno mesi diversi.
+c) -1 se il mese di a è tra gennaio e giugno e quello di b tra luglio e dicembre;
+   1 se il mese di b è tra gennaio e giugno e quello di a tra luglio e dicembre.
+d) -1 se il giorno oppure il mese di a è uguale a quello di b; 1 se sia il giorno
+   sia il mese di a sono diversi da quelli di b.
+
+SOLUZIONE
+ a) questa specifica è valida per un comparatore ma non è coerente con equals,
+    infatti se a = 1/1/2001 e b = 2/1/2001 risulta compare(a,b) == 0, mentre,
+    a.equals(b) restituisce false.
+ b) consideriamo solo i mesi: a = giugno, b = luglio e c = giugno, avremo che
+    compare(a,b) > 0 e compare(b,c) > 0 ma risulta compare(a,c) < 0 e quindi non
+    rispettando la transitività (proprietà 2) non è una specifica valida per un
+    comparatore.
+ c) è una specifica valida per un comparatore ma non è coerente con equals per
+    un motivo analogo all'opzione a (l'esempio fatto in a è valido anche qui)
+ d) non è una specifica valida per un comparatore, infatti sia a = 1/1/aaaa,
+    b = 1/2/aaaa e c = 2/2/aaaa avremo compare(a,b) < 0 e compare(b,c) < 0 ma
+    compare(a,c) > 0 e quindi non rispetta la proprietà 2 (non è transitiva)
