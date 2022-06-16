@@ -1,0 +1,2 @@
+
+enum Specialista { OCULISTA, PEDIATRA; }
