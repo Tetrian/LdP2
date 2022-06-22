@@ -1,4 +1,5 @@
 
+// Elencare tutte le sequenze di output possibili per il seguente programma.
 public class MysteryThread8 {
   private volatile int n;
 
@@ -22,6 +23,5 @@ public class MysteryThread8 {
             1 1 2
             1 2 1
             2 1 1
-    NOTA BENE: durante i test sono usciti anche i seguenti output: 1 2, 2 1, 1 1
   */
 }
