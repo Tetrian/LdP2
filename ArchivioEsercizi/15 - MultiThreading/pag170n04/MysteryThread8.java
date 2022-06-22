@@ -22,8 +22,6 @@ public class MysteryThread8 {
             1 1 2
             1 2 1
             2 1 1
-    NOTA BENE: il thread main può terminare prima degli altri thread, in quel
-    caso non vedremmo la stampa dei thread che termineranno dopo, quindi
-    ci possono essere anche i seguenti output: 1 2, 2 1, 1 1, 1
+    NOTA BENE: durante i test sono usciti anche i seguenti output: 1 2, 2 1, 1 1
   */
 }
